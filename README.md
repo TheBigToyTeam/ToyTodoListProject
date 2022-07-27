@@ -1,6 +1,6 @@
 # TodoList ToyProject
 
-### ■ Project summary
+### ■ Project Summary
 
  - 이제까지 배웠던 지식을 점검해보며 결과물을 도출하기 위해 TodoList 프로젝트를 진행 
  - TEAM : 홍성권 ( FrontEnd ) , 김건휘 ( BackEnd ) 
@@ -15,7 +15,7 @@
  
  ###  ■ content
  
- ##  TodoPage information
+ ##  TodoPage Information
   
  ### 구현 기능: 
     ■ CREATE : ToDo를 작성할 수 있다. ( Todo를 작성할 시 글작성에 관한 페이지가 나오며 작성일, 타이틀, 체크박스, 메인내용이 기제할 수 있다. )
