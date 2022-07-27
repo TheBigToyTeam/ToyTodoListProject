@@ -3,12 +3,12 @@
 ### ■ Project summary
 
  - 이제까지 배웠던 지식을 점검해보며 결과물을 도출하기 위해 TodoList 프로젝트를 진행 
- - TEAM : 홍성권 ( FrontEnd ) , 김건휘 ( backEnd ) 
+ - TEAM : 홍성권 ( FrontEnd ) , 김건휘 ( BackEnd ) 
  - GITHUB : 
       - 홍성권 : [Hong-sk](https://github.com/Hong-sk) 
       - 김건휘 : [KimJeju](https://github.com/KimJeju) 
  - 기술블로그 :
-      - 홍성권 : [title](link)
+      - 홍성권 : [더큰성권](https://velog.io/@sooyun9600)
       - 김건휘 : [176cm-developer](https://176cm-developer.tistory.com/)
  
  * * *
