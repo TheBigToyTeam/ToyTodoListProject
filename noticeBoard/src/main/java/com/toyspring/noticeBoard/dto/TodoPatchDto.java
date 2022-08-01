@@ -1,0 +1,20 @@
+package com.toyspring.noticeBoard.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class TodoPatchDto {
+
+    private Long TodoId;
+    private String title;
+    private String content;
+    private LocalDateTime modifiedAt = LocalDateTime.now();
+}
