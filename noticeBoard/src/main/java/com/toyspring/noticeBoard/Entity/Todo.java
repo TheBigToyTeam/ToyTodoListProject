@@ -18,4 +18,5 @@ public class Todo {
     private String title;
     private String content;
     private LocalDateTime createAt = LocalDateTime.now();
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,7 +15,11 @@ import java.time.LocalDateTime;
 public class TodoPatchDto {
 
     private Long TodoId;
+
+    @NotBlank(message = "타이틀은 공백일 수 없습니다.")
     private String title;
+
+    @NotBlank(message = "내용은 공백일 수 없습니다.")
     private String content;
     private LocalDateTime modifiedAt = LocalDateTime.now();
 }

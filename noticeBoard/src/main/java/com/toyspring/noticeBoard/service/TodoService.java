@@ -1,21 +1,18 @@
 package com.toyspring.noticeBoard.service;
 
 import com.toyspring.noticeBoard.Entity.Todo;
-import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
 public interface TodoService {
 
-    public Todo createTodo(Todo todo);
+    public Todo newWrite(Todo todo);
 
-    public Todo updateTodo(Todo todo);
+    public Todo patch(Todo todo);
 
-    public Todo findByTodo(Long todoId);
+    public Todo search(Long todoId);
 
-    public List<Todo> findTodos();
+    public List<Todo> searchAll();
 
     public void deleteTodo(Long todoId);
 }

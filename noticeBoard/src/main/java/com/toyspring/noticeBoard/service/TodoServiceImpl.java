@@ -3,9 +3,6 @@ package com.toyspring.noticeBoard.service;
 import com.toyspring.noticeBoard.Entity.Todo;
 import com.toyspring.noticeBoard.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +16,7 @@ public class TodoServiceImpl implements TodoService{
     private TodoRepository todoRepository;
 
     @Override
-    public Todo createTodo(Todo todo) {
+    public Todo newWrite(Todo todo) {
 
         Todo createTodo = todo;
 
@@ -27,7 +24,7 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public Todo updateTodo(Todo todo) {
+    public Todo patch(Todo todo) {
         Todo findTodo = todo;
         findTodo.getTodoId();
         findTodo.setContent(todo.getContent());
@@ -35,7 +32,7 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public Todo findByTodo(Long todoId) {
+    public Todo search(Long todoId) {
         Optional<Todo> todo = todoRepository.findById(todoId);
 
         Todo findTodo = todo.orElseThrow(() -> new NoSuchElementException());
@@ -43,7 +40,7 @@ public class TodoServiceImpl implements TodoService{
         return findTodo ;
     }
 
-    public List<Todo> findTodos() {
+    public List<Todo> searchAll() {
 
         List<Todo> findTodo = todoRepository.findAll();
 
