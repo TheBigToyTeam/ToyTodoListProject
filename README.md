@@ -38,6 +38,14 @@
 
 ##
 
+### ■ ToDoList Class Diagram
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/80661467/182079841-82b5d2e2-0770-4cbc-b5eb-c6355cc1a2e6.png" width="700" height="580"/>
+</p> 
+
+
+
 
 
 
