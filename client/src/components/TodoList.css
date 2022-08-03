@@ -1,0 +1,9 @@
+.todo--list {
+  width: 100%;
+  margin-top: 3%;
+  justify-content: space-between;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3%;
+}
