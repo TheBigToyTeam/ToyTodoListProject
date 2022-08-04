@@ -7,9 +7,13 @@ import com.toyspring.noticeBoard.dto.TodoPostDto;
 import com.toyspring.noticeBoard.dto.TodoResponseDto;
 import com.toyspring.noticeBoard.mapper.TodoMapper;
 import com.toyspring.noticeBoard.service.TodoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,7 +23,9 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/v1/todos")
+@RequestMapping("/v2/todos")
+@Slf4j
+@Validated
 public class TodoController {
 
 
@@ -34,7 +40,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody TodoPostDto postDto){
+    public ResponseEntity create(@RequestBody @Valid TodoPostDto postDto){
       Todo todo = mapper.todoPostDtoToTodo(postDto);
 
       Todo createTodo = todoService.newWrite(todo);
@@ -46,7 +52,7 @@ public class TodoController {
     }
 
     @PatchMapping("/{todo_id}")
-    public ResponseEntity update(@Positive @PathVariable("todo_id") @Min(1) Long todoId, @RequestBody TodoPatchDto requestBody){
+    public ResponseEntity update(@Positive @PathVariable("todo_id") @Min(1) Long todoId,@Valid @RequestBody TodoPatchDto requestBody){
         requestBody.setTodoId(todoId);
 
         Todo updateTodo = todoService.patch(mapper.todoPatchDtoToTodo(requestBody));
@@ -82,6 +88,46 @@ public class TodoController {
     }
 
 
+    //회원정보처리 오류에 관한 예외에 대한 메서드입니다.
+    @ExceptionHandler
+    public ResponseEntity handleException(MethodArgumentNotValidException e){
+
+        //잘못된 응답 데이터를 받았을 시 methodArgumentNotValidException 발동
+        //보다 자세한 오류 사항 확인가능
+
+//        ex)
+//        [
+//        {
+//            "codes": [
+//            "NotBlank.todoPostDto.title",
+//                    "NotBlank.title",
+//                    "NotBlank.java.lang.String",
+//                    "NotBlank"
+//        ],
+//            "arguments": [
+//            {
+//                "codes": [
+//                "todoPostDto.title",
+//                        "title"
+//                ],
+//                "arguments": null,
+//                    "defaultMessage": "title",
+//                    "code": "title"
+//            }
+//        ],
+//            "defaultMessage": "타이틀은 공백일 수 없습니다.",
+//                "objectName": "todoPostDto",
+//                "field": "title",
+//                "rejectedValue": "",
+//                "bindingFailure": false,
+//                "code": "NotBlank"
+//        }
+//]
+
+        final List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+
+        return new ResponseEntity(fieldErrors, HttpStatus.BAD_REQUEST);
+    }
 
 
 
