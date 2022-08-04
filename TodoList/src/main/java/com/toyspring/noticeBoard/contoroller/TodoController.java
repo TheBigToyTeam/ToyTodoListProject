@@ -5,6 +5,7 @@ import com.toyspring.noticeBoard.Entity.Todo;
 import com.toyspring.noticeBoard.dto.TodoPatchDto;
 import com.toyspring.noticeBoard.dto.TodoPostDto;
 import com.toyspring.noticeBoard.dto.TodoResponseDto;
+import com.toyspring.noticeBoard.errorresponse.ErrorResponse;
 import com.toyspring.noticeBoard.mapper.TodoMapper;
 import com.toyspring.noticeBoard.service.TodoService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -93,40 +95,32 @@ public class TodoController {
     public ResponseEntity handleException(MethodArgumentNotValidException e){
 
         //잘못된 응답 데이터를 받았을 시 methodArgumentNotValidException 발동
-        //보다 자세한 오류 사항 확인가능
+        //ErrorResponse 클래스를 사용해 보다 자세한 오류 사항 확인가능
 
 //        ex)
-//        [
 //        {
-//            "codes": [
-//            "NotBlank.todoPostDto.title",
-//                    "NotBlank.title",
-//                    "NotBlank.java.lang.String",
-//                    "NotBlank"
-//        ],
-//            "arguments": [
+//            "fieldError": [
 //            {
-//                "codes": [
-//                "todoPostDto.title",
-//                        "title"
-//                ],
-//                "arguments": null,
-//                    "defaultMessage": "title",
-//                    "code": "title"
-//            }
-//        ],
-//            "defaultMessage": "타이틀은 공백일 수 없습니다.",
-//                "objectName": "todoPostDto",
 //                "field": "title",
-//                "rejectedValue": "",
-//                "bindingFailure": false,
-//                "code": "NotBlank"
+//                    "rejectedValue": "",
+//                    "reason": "타이틀은 공백일 수 없습니다."
+//            }
+//    ]
 //        }
-//]
+
 
         final List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
 
-        return new ResponseEntity(fieldErrors, HttpStatus.BAD_REQUEST);
+        //에러리스폰 클래스 사용하기
+        List<ErrorResponse.FieldError> errors =
+                fieldErrors.stream()
+                        .map(error -> new ErrorResponse.FieldError(
+                                error.getField(),
+                                error.getRejectedValue(),
+                               error.getDefaultMessage()))
+                        .collect(Collectors.toList());
+
+        return new ResponseEntity(new ErrorResponse(errors), HttpStatus.BAD_REQUEST);
     }
 
 
