@@ -1,11 +1,21 @@
 import React from "react";
 import "./TodoList.css";
-import dummyData from "../data/dummyData";
+import TodoListItem from "./TodoListItem";
 
-console.log(dummyData);
-
-const TodoList = () => {
-  return <div className="todo--list"></div>;
+const TodoList = ({ todoList, deleteTodoListItem }) => {
+  return (
+    <div className="todo--list">
+      {todoList.map((todoListItem, key) => {
+        return (
+          <TodoListItem
+            key={key}
+            todoListItem={todoListItem}
+            deleteTodoListItem={deleteTodoListItem}
+          />
+        );
+      })}
+    </div>
+  );
 };
 
 export default TodoList;

@@ -4,7 +4,54 @@ import TodoList from "./TodoList";
 import Modal from "./Modal";
 
 const TodoContainer = () => {
-  const [todolist, setTodolist] = useState();
+  const [todolist, setTodolist] = useState([
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      title: "Lorem Ipsum",
+      contents:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+  ]);
+
   const [modalIsOpened, setModalIsOpened] = useState(false);
 
   const openModal = () => {
@@ -34,7 +81,7 @@ const TodoContainer = () => {
           closeModal={closeModal}
           modalIsOpened={modalIsOpened}
         />
-        <TodoList />
+        <TodoList todoList={todolist} />
       </div>
     </>
   );

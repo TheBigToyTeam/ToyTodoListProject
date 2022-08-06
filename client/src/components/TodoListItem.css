@@ -1,0 +1,25 @@
+.todo--list--item {
+  width: 30%;
+  height: 27%;
+  border-radius: 3%;
+  color: white;
+  /* font-size: 2rem;
+    font-weight: 800; */
+  position: relative;
+  /* overflow-y: scroll; */
+  background-color: powderblue;
+}
+.todo--list--item:hover {
+  width: 33%;
+  height: 30%;
+  animation: big 0.2s ease forwards;
+}
+
+.todo--list--item > p:first-child {
+  margin-left: 5%;
+  margin-top: 5%;
+}
+.todo--list--item > p:nth-child(2) {
+  margin-left: 5%;
+  margin-right: 5%;
+}
