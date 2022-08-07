@@ -2,7 +2,7 @@ import React from "react";
 import "./TodoList.css";
 import TodoListItem from "./TodoListItem";
 
-const TodoList = ({ todoList, deleteTodoListItem }) => {
+const TodoList = ({ todoList, deleteTodoListItem, updateTodoListItem }) => {
   return (
     <div className="todo--list">
       {todoList.map((todoListItem, key) => {
@@ -11,6 +11,7 @@ const TodoList = ({ todoList, deleteTodoListItem }) => {
             key={key}
             todoListItem={todoListItem}
             deleteTodoListItem={deleteTodoListItem}
+            updateTodoListItem={updateTodoListItem}
           />
         );
       })}

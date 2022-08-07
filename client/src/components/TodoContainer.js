@@ -5,6 +5,7 @@ import Modal from "./Modal";
 
 const TodoContainer = () => {
   const [todolist, setTodolist] = useState([
+    // api 통해 데이터 잘 확인되면 빈 배열로 바꿀 것
     {
       title: "Lorem Ipsum",
       contents:
@@ -52,6 +53,21 @@ const TodoContainer = () => {
     },
   ]);
 
+  useEffect(() => {
+    getTodoList();
+  }, [todolist]);
+
+  const getTodoList = () => {
+    return (
+      fetch(/* 건휘형한테 말해서 주소 받아올 것 */)
+        // postman으로 api 테스트해보기
+        .then((res) => res.json())
+        .then((todoItem) => {
+          setTodolist(todoItem);
+        })
+    );
+  };
+
   const [modalIsOpened, setModalIsOpened] = useState(false);
 
   const openModal = () => {
@@ -62,9 +78,13 @@ const TodoContainer = () => {
     setModalIsOpened(false);
   };
 
-  const addNewTodo = function (newTodo) {
+  const addNewTodo = (newTodo) => {
     setTodolist([...todolist, newTodo]);
   };
+
+  const deleteTodo = ({ title, contents }) => {};
+
+  const updateTodo = (id) => {};
 
   return (
     <>
@@ -81,7 +101,11 @@ const TodoContainer = () => {
           closeModal={closeModal}
           modalIsOpened={modalIsOpened}
         />
-        <TodoList todoList={todolist} />
+        <TodoList
+          todoList={todolist}
+          deleteTodoListItem={deleteTodo}
+          updateTodoListItem={updateTodo}
+        />
       </div>
     </>
   );
