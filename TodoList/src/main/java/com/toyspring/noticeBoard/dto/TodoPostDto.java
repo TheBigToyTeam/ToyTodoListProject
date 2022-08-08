@@ -13,6 +13,6 @@ public class TodoPostDto {
     @NotBlank(message = "타이틀은 공백일 수 없습니다.")
     private String title;
 
-    @NotBlank(message = "내용은 공백일 수 없습니다.")
+    //@NotBlank(message = "내용은 공백일 수 없습니다.")
     private String content;
 }

@@ -5,68 +5,52 @@ import Modal from "./Modal";
 
 const TodoContainer = () => {
   const [todolist, setTodolist] = useState([
-    // api 통해 데이터 잘 확인되면 빈 배열로 바꿀 것
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      title: "Lorem Ipsum",
-      contents:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   title: "Lorem Ipsum",
+    //   contents:
+    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
   ]);
-
-  useEffect(() => {
-    getTodoList();
-  }, [todolist]);
-
-  const getTodoList = () => {
-    return (
-      fetch(/* 건휘형한테 말해서 주소 받아올 것 */)
-        // postman으로 api 테스트해보기
-        .then((res) => res.json())
-        .then((todoItem) => {
-          setTodolist(todoItem);
-        })
-    );
-  };
 
   const [modalIsOpened, setModalIsOpened] = useState(false);
 
@@ -78,8 +62,24 @@ const TodoContainer = () => {
     setModalIsOpened(false);
   };
 
+  useEffect(() => {
+    getTodoList();
+  }, [todolist]);
+
+  const getTodoList = () => {
+    return fetch(/* "http://localhost:8080/v2/todos" */)
+      .then((res) => res.json())
+      .then((todoItem) => {
+        setTodolist(todoItem);
+      });
+  };
+
   const addNewTodo = (newTodo) => {
-    setTodolist([...todolist, newTodo]);
+    if (todolist.length >= 9) {
+      window.alert("todo 생성은 최대 9개 까지만 가능합니다");
+    } else {
+      setTodolist([...todolist, newTodo]);
+    }
   };
 
   const deleteTodo = ({ title, contents }) => {};
@@ -97,6 +97,7 @@ const TodoContainer = () => {
           My Notes +
         </h1>
         <Modal
+          todolist={todolist}
           addNewTodo={addNewTodo}
           closeModal={closeModal}
           modalIsOpened={modalIsOpened}
@@ -105,6 +106,7 @@ const TodoContainer = () => {
           todoList={todolist}
           deleteTodoListItem={deleteTodo}
           updateTodoListItem={updateTodo}
+          openModal={openModal}
         />
       </div>
     </>
