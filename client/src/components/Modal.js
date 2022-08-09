@@ -9,9 +9,10 @@ const Modal = (props) => {
       className={
         modalIsOpened ? "openedModal modal--container" : "modal--container"
       }
+      onClick={closeModal}
     >
       {modalIsOpened ? (
-        <div className="modal--body">
+        <div className="modal--body" onClick={(e) => e.stopPropagation()}>
           <header>
             <h1>Todo 생성</h1>
             <button className="close" onClick={closeModal}>
@@ -29,7 +30,7 @@ const Modal = (props) => {
             </div>
           </main>
           <footer>
-            <button classNAme="add--btn" onClick={addNewTodo}>
+            <button className="add--btn" onClick={addNewTodo}>
               add
             </button>
           </footer>
