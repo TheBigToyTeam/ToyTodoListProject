@@ -5,24 +5,33 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-
+@Getter
 public class TodoDto {
 
-    @AllArgsConstructor
+    private Long todoId;
+
     @Getter
     public static class Create{
+
+        private Long todoId;
         @NotBlank(message = "타이틀은 공백일 수 없습니다.")
         private String title;
 
         @NotBlank(message = "내용은 공백일 수 없습니다.")
         private String content;
+
+
+        public Create(String title, String content) {
+            this.title = title;
+            this.content = content;
+        }
     }
 
     @AllArgsConstructor
     @Getter
     public static class Patch{
 
-        private Long TodoId;
+        private Long todoId;
 
         @NotBlank(message = "타이틀은 공백일 수 없습니다.")
         private String title;
@@ -30,6 +39,10 @@ public class TodoDto {
         @NotBlank(message = "내용은 공백일 수 없습니다.")
         private String content;
         private LocalDateTime modifiedAt = LocalDateTime.now();
+
+        public void setMemberId(long todoId) {
+            this.todoId = todoId;
+        }
     }
 
     @AllArgsConstructor
