@@ -16,7 +16,7 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long todoId;
     private String title;
-    private String content;
+    private String contents;
     private LocalDateTime createAt = LocalDateTime.now();
     private LocalDateTime modifiedAt = LocalDateTime.now();
 }

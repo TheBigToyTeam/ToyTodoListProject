@@ -81,6 +81,7 @@ public class TodoController {
         return new ResponseEntity<>(findTodo,HttpStatus.ACCEPTED);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{todo_id}")
     public ResponseEntity delete(@Positive @PathVariable("todo_id") Long todoId){
 

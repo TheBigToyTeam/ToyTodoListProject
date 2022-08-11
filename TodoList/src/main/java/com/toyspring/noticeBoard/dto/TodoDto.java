@@ -18,12 +18,12 @@ public class TodoDto {
         private String title;
 
         @NotBlank(message = "내용은 공백일 수 없습니다.")
-        private String content;
+        private String contents;
 
 
-        public Create(String title, String content) {
+        public Create(String title, String contents) {
             this.title = title;
-            this.content = content;
+            this.contents = contents;
         }
     }
 
@@ -37,7 +37,7 @@ public class TodoDto {
         private String title;
 
         @NotBlank(message = "내용은 공백일 수 없습니다.")
-        private String content;
+        private String contents;
         private LocalDateTime modifiedAt = LocalDateTime.now();
 
         public void setMemberId(long todoId) {
@@ -55,7 +55,7 @@ public class TodoDto {
         private String title;
 
         @NotBlank(message = "내용은 공백일 수 없습니다.")
-        private String content;
+        private String contents;
     }
 
 

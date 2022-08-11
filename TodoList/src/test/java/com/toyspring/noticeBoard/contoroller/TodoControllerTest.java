@@ -52,9 +52,7 @@ class TodoControllerTest {
                                 .content(content)
 
                 );
-
-
-
+        
 
         //then
         MvcResult result = actions
