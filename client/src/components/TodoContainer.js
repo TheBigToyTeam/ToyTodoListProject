@@ -42,7 +42,7 @@ const TodoContainer = () => {
         contents: contents,
       };
 
-      fetch("http://localhost:8080/vs/todos/", {
+      fetch("http://localhost:8080/v2/todos/", {
         method: "POST",
         headers: {
           Accept: "application/json",

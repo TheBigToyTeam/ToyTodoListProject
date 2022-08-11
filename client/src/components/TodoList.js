@@ -23,7 +23,7 @@ const TodoList = ({
         todoList.map((todoListItem, idx) => {
           return (
             <TodoListItem
-              idx={idx}
+              key={idx}
               todoListItem={todoListItem}
               deleteTodoListItem={deleteTodoListItem}
               updateTodoListItem={updateTodoListItem}
