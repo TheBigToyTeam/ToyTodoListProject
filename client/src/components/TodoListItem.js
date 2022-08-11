@@ -6,6 +6,7 @@ import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const TodoListItem = ({
+  idx,
   todoListItem,
   deleteTodoListItem,
   updateTodoListItem,
@@ -13,8 +14,12 @@ const TodoListItem = ({
   const { title, contents } = todoListItem;
   const [todoChecked, setTodoChecked] = useState(false);
 
-  const handleClick = () => {
+  const handleTodoCheck = () => {
     setTodoChecked(!todoChecked);
+  };
+
+  const handleTodoDelete = () => {
+    deleteTodoListItem(idx);
   };
 
   let colorNum = "color" + Math.floor(Math.random() * 10);
@@ -36,12 +41,12 @@ const TodoListItem = ({
       <FontAwesomeIcon
         className="trash icon"
         icon={faTrashCan}
-        onClick={deleteTodoListItem}
+        onClick={handleTodoDelete}
       />
       <FontAwesomeIcon
         className="checkbox icon"
         icon={faSquareCheck}
-        onClick={handleClick}
+        onClick={handleTodoCheck}
       />
     </div>
   );

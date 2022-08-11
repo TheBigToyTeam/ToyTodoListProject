@@ -24,6 +24,7 @@ const TodoList = ({
           return (
             <TodoListItem
               key={idx}
+              idx={idx}
               todoListItem={todoListItem}
               deleteTodoListItem={deleteTodoListItem}
               updateTodoListItem={updateTodoListItem}
