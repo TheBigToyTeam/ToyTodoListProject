@@ -5,57 +5,16 @@ import Modal from "./Modal";
 
 const TodoContainer = () => {
   const [todolist, setTodolist] = useState([
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
-    // {
-    //   title: "Lorem Ipsum",
-    //   contents:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    // },
+    { title: "Aaaa", contents: "fdfdfdf" },
   ]);
-
   const [modalIsOpened, setModalIsOpened] = useState(false);
 
   const openModal = () => {
-    setModalIsOpened(true);
+    if (todolist.length >= 9) {
+      window.alert("todo 생성은 최대 9개 까지만 가능합니다");
+    } else {
+      setModalIsOpened(true);
+    }
   };
 
   const closeModal = () => {
@@ -67,24 +26,49 @@ const TodoContainer = () => {
   }, [todolist]);
 
   const getTodoList = () => {
-    return fetch(/* "http://localhost:8080/v2/todos" */)
+    return fetch("http://localhost:8080/v2/todos/")
       .then((res) => res.json())
       .then((todoItem) => {
         setTodolist(todoItem);
       });
   };
 
-  const addNewTodo = (newTodo) => {
+  const addNewTodo = ({ title, contents }) => {
     if (todolist.length >= 9) {
       window.alert("todo 생성은 최대 9개 까지만 가능합니다");
     } else {
-      setTodolist([...todolist, newTodo]);
+      const newTodo = {
+        title: title,
+        contents: contents,
+      };
+
+      fetch("http://localhost:8080/vs/todos/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTodo),
+      }).then((res) => {
+        if (res.status === 201) {
+          getTodoList();
+        }
+      });
     }
   };
 
-  const deleteTodo = ({ title, contents }) => {};
+  const deleteTodo = (id) => {
+    fetch(`http://localhost:8080/v2/todos/${id}`, { method: "DELETE" }) //
+      .then((res) => {
+        if (res.status === 202 || 204) {
+          getTodoList();
+        }
+      });
+  };
 
-  const updateTodo = (id) => {};
+  const updateTodo = () => {
+    setModalIsOpened(true);
+  };
 
   return (
     <>
