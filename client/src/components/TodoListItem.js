@@ -23,6 +23,7 @@ const TodoListItem = ({
   };
 
   let colorNum = "color" + Math.floor(Math.random() * 10);
+  console.log(colorNum);
 
   // const aaa = document.querySelector(".todo--list--item");
   // if (setTodoChecked === false) {

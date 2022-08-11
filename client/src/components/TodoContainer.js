@@ -4,9 +4,7 @@ import TodoList from "./TodoList";
 import Modal from "./Modal";
 
 const TodoContainer = () => {
-  const [todolist, setTodolist] = useState([
-    { title: "Aaaa", contents: "fdfdfdf" },
-  ]);
+  const [todolist, setTodolist] = useState([]);
   const [modalIsOpened, setModalIsOpened] = useState(false);
 
   const openModal = () => {
