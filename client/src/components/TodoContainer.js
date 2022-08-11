@@ -23,7 +23,7 @@ const TodoContainer = () => {
 
   useEffect(() => {
     getTodoList();
-  }, [todolist]);
+  }, []);
 
   const getTodoList = () => {
     return fetch("http://localhost:8080/v2/todos/")

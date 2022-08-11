@@ -28,7 +28,7 @@ public class TodoServiceImpl implements TodoService{
     public Todo patch(Todo todo) {
         Todo findTodo = todo;
         findTodo.getTodoId();
-        findTodo.setContent(todo.getContent());
+        findTodo.setContents(todo.getContents());
         return todoRepository.save(findTodo);
     }
 
