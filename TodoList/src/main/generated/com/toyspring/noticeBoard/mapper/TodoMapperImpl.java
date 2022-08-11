@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-08T18:50:55+0900",
+    date = "2022-08-11T16:32:41+0900",
     comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
@@ -24,7 +24,7 @@ public class TodoMapperImpl implements TodoMapper {
         Todo todo = new Todo();
 
         todo.setTitle( todoPostDto.getTitle() );
-        todo.setContent( todoPostDto.getContent() );
+        todo.setContents( todoPostDto.getContents() );
 
         return todo;
     }
@@ -39,7 +39,7 @@ public class TodoMapperImpl implements TodoMapper {
 
         todo.setTodoId( todoPatchDto.getTodoId() );
         todo.setTitle( todoPatchDto.getTitle() );
-        todo.setContent( todoPatchDto.getContent() );
+        todo.setContents( todoPatchDto.getContents() );
         todo.setModifiedAt( todoPatchDto.getModifiedAt() );
 
         return todo;
@@ -52,14 +52,14 @@ public class TodoMapperImpl implements TodoMapper {
         }
 
         String title = null;
-        String content = null;
+        String contents = null;
 
         title = todo.getTitle();
-        content = todo.getContent();
+        contents = todo.getContents();
 
         Long todoId = null;
 
-        TodoResponseDto todoResponseDto = new TodoResponseDto( todoId, title, content );
+        TodoResponseDto todoResponseDto = new TodoResponseDto( todoId, title, contents );
 
         return todoResponseDto;
     }

@@ -5,12 +5,11 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-@Getter
 public class TodoDto {
 
-    private Long todoId;
 
     @Getter
+    @AllArgsConstructor
     public static class Create{
 
         private Long todoId;
