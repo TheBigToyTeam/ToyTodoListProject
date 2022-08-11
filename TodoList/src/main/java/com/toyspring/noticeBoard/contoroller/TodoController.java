@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/v2/todos")
 @Slf4j
 @Validated
+@CrossOrigin(origins = "http://localhost:3001")
 public class TodoController {
 
 
