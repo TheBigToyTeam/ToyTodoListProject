@@ -21,6 +21,9 @@ const TodoList = ({
         </div>
       ) : (
         todoList.map((todoListItem, idx) => {
+          // map을 통해 생성되는 idx를 넣어주고 있지만
+          // 백엔드에서 중간 idx를 delete할시 새로 갱신이 안 되는 문제 발생
+          // post 할 때 response로 받아오는 id를 받아와서 사용해줄 것
           return (
             <TodoListItem
               key={idx}

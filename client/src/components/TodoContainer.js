@@ -65,7 +65,9 @@ const TodoContainer = () => {
   };
 
   const updateTodo = () => {
-    setModalIsOpened(true);
+    // id값으로 해당하는 내용 가져와서 modal에 렌더링해줄지,
+    // 새로운 modal 만들지,
+    // 아니면 아예 다른 방법으로 만들지 건휘형이랑 얘기 필요
   };
 
   return (
