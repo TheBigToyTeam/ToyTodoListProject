@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-11T16:32:41+0900",
+    date = "2022-08-16T19:18:33+0900",
     comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
@@ -51,13 +51,13 @@ public class TodoMapperImpl implements TodoMapper {
             return null;
         }
 
+        Long todoId = null;
         String title = null;
         String contents = null;
 
+        todoId = todo.getTodoId();
         title = todo.getTitle();
         contents = todo.getContents();
-
-        Long todoId = null;
 
         TodoResponseDto todoResponseDto = new TodoResponseDto( todoId, title, contents );
 

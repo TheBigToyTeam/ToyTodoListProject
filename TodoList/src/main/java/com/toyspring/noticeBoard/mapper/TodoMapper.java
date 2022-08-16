@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring",unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface TodoMapper {
 
     Todo todoPostDtoToTodo(TodoPostDto todoPostDto);
