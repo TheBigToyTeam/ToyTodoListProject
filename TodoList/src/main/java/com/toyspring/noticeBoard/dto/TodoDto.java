@@ -1,61 +1,26 @@
 package com.toyspring.noticeBoard.dto;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class TodoDto {
 
+    private Long TodoId;
 
-    @Getter
-    @AllArgsConstructor
-    public static class Create{
+    @NotBlank(message = "타이틀은 공백일 수 없습니다.")
+    private String title;
 
-        private Long todoId;
-        @NotBlank(message = "타이틀은 공백일 수 없습니다.")
-        private String title;
-
-        @NotBlank(message = "내용은 공백일 수 없습니다.")
-        private String contents;
-
-
-        public Create(String title, String contents) {
-            this.title = title;
-            this.contents = contents;
-        }
-    }
-
-    @AllArgsConstructor
-    @Getter
-    public static class Patch{
-
-        private Long todoId;
-
-        @NotBlank(message = "타이틀은 공백일 수 없습니다.")
-        private String title;
-
-        @NotBlank(message = "내용은 공백일 수 없습니다.")
-        private String contents;
-        private LocalDateTime modifiedAt = LocalDateTime.now();
-
-        public void setMemberId(long todoId) {
-            this.todoId = todoId;
-        }
-    }
-
-    @AllArgsConstructor
-    @Getter
-    public static class Response{
-
-        private Long TodoId;
-
-        @NotBlank(message = "타이틀은 공백일 수 없습니다.")
-        private String title;
-
-        @NotBlank(message = "내용은 공백일 수 없습니다.")
-        private String contents;
-    }
+    //@NotBlank(message = "내용은 공백일 수 없습니다.")
+    private String contents;
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 
 
 }

@@ -35,23 +35,25 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
+    @Autowired
     private TodoMapper mapper;
 
-    public TodoController(TodoService todoService, TodoMapper mapper) {
-        this.todoService = todoService;
-        this.mapper = mapper;
-    }
 
     @PostMapping
     public ResponseEntity create(@RequestBody @Valid TodoPostDto postDto){
+
       Todo todo = mapper.todoPostDtoToTodo(postDto);
 
       Todo createTodo = todoService.newWrite(todo);
+
       TodoResponseDto responseDto = mapper.todoToTodoResponseDto(createTodo);
 
+      System.out.println("responseDto = " + responseDto);
 
       System.out.println("Todo 포스팅 완료");
       return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+
+
 
 
     }
@@ -61,6 +63,7 @@ public class TodoController {
         requestBody.setTodoId(todoId);
 
         Todo updateTodo = todoService.patch(mapper.todoPatchDtoToTodo(requestBody));
+
 
         System.out.println("Todo 패치 완료");
         return new ResponseEntity<>(mapper.todoToTodoResponseDto(updateTodo),HttpStatus.OK);
