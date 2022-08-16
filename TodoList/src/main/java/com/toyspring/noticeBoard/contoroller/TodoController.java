@@ -52,6 +52,8 @@ public class TodoController {
 
       System.out.println("Todo 포스팅 완료");
       return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+
+
     }
 
     @PatchMapping("/{todo_id}")
@@ -83,7 +85,7 @@ public class TodoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping("/{todo_id}")
-    public ResponseEntity delete(@Positive @PathVariable("todo_id") Long todoId){
+    public ResponseEntity delete(@PathVariable("todo_id") Long todoId){
 
        todoService.deleteTodo(todoId);
 
