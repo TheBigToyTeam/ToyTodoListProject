@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./TodoListItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,8 @@ const TodoListItem = ({
   todoListItem,
   deleteTodoListItem,
   updateTodoListItem,
+  openUpdateModal,
+  setCurId,
 }) => {
   const { title, contents, todoId } = todoListItem;
   const [todoChecked, setTodoChecked] = useState(false);
@@ -21,8 +23,13 @@ const TodoListItem = ({
     deleteTodoListItem(todoId);
   };
 
+  const handleTodoUpdate = () => {
+    // updateTodoListItem(todoId);
+    openUpdateModal();
+    setCurId(todoId);
+  };
+
   let colorNum = "color" + Math.floor(Math.random() * 10);
-  console.log(colorNum);
 
   // const aaa = document.querySelector(".todo--list--item");
   // if (setTodoChecked === false) {
@@ -36,7 +43,7 @@ const TodoListItem = ({
       <FontAwesomeIcon
         className="pencil icon"
         icon={faPencil}
-        onClick={updateTodoListItem}
+        onClick={handleTodoUpdate}
       />
       <FontAwesomeIcon
         className="trash icon"

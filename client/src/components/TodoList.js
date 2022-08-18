@@ -7,6 +7,8 @@ const TodoList = ({
   deleteTodoListItem,
   updateTodoListItem,
   openModal,
+  openUpdateModal,
+  setCurId,
 }) => {
   return (
     <div className="todo--list">
@@ -30,6 +32,8 @@ const TodoList = ({
               todoListItem={todoListItem}
               deleteTodoListItem={deleteTodoListItem}
               updateTodoListItem={updateTodoListItem}
+              openUpdateModal={openUpdateModal}
+              setCurId={setCurId}
             />
           );
         })

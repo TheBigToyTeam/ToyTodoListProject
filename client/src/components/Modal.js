@@ -2,13 +2,27 @@ import React from "react";
 import "./Modal.css";
 
 const Modal = (props) => {
-  const { modalIsOpened, closeModal, addNewTodo } = props;
+  const {
+    modalRole,
+    modalTitleText,
+    addNewTodo,
+    updateTodo,
+    closeModal,
+    modalIsOpened,
+    curId,
+  } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const title = e.target[1].value;
     const contents = e.target[2].value;
-    addNewTodo({ title, contents });
+    // addNewTodo({ title, contents });
+
+    if (modalRole === "CREATE") {
+      addNewTodo({ title, contents });
+    } else {
+      updateTodo({ title, contents, curId });
+    }
   };
 
   return (
@@ -22,7 +36,7 @@ const Modal = (props) => {
         <div className="modal--body" onClick={(e) => e.stopPropagation()}>
           <form method="get" className="form" onSubmit={handleSubmit}>
             <header>
-              <h1>Todo 생성</h1>
+              <h1>{modalTitleText}</h1>
               <button className="close" onClick={closeModal}>
                 &times;
               </button>
@@ -39,7 +53,7 @@ const Modal = (props) => {
             </main>
             <footer>
               <button className="add--btn" type="submit">
-                add
+                등록
               </button>
             </footer>
           </form>

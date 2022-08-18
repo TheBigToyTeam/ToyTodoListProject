@@ -6,13 +6,21 @@ import Modal from "./Modal";
 const TodoContainer = () => {
   const [todolist, setTodolist] = useState([]);
   const [modalIsOpened, setModalIsOpened] = useState(false);
+  const [modalRole, setModalRole] = useState("CREATE");
+  const [curId, setCurId] = useState(-1);
 
   const openModal = () => {
     if (todolist.length >= 9) {
       window.alert("todo 생성은 최대 9개 까지만 가능합니다");
     } else {
+      setModalRole("CREATE");
       setModalIsOpened(true);
     }
+  };
+
+  const openUpdateModal = () => {
+    setModalRole("UPDATE");
+    setModalIsOpened(true);
   };
 
   const closeModal = () => {
@@ -64,10 +72,23 @@ const TodoContainer = () => {
       });
   };
 
-  const updateTodo = () => {
+  const updateTodo = ({ title, contents, curId }) => {
     // id값으로 해당하는 내용 가져와서 modal에 렌더링해줄지,
     // 새로운 modal 만들지,
     // 아니면 아예 다른 방법으로 만들지 건휘형이랑 얘기 필요
+    const updatedTodo = {
+      title: title,
+      contents: contents,
+    };
+    fetch(`http://localhost:8080/v2/todos/${curId}`, {
+      method: "PATCH",
+      body: JSON.stringify(updatedTodo),
+    }).then((res) => {
+      // 정규표현식으로 정확하게 바꿀 수 있음 추후 수정할 것
+      if (res.status === 200 || 201) {
+        getTodoList();
+      }
+    }); //
   };
 
   return (
@@ -81,16 +102,22 @@ const TodoContainer = () => {
           My Notes +
         </h1>
         <Modal
-          todolist={todolist}
+          modalRole={modalRole}
+          modalTitleText={modalRole === "CREATE" ? "TODO 생성" : "TODO 변경"}
+          // todolist={todolist}
           addNewTodo={addNewTodo}
+          updateTodo={updateTodo}
           closeModal={closeModal}
           modalIsOpened={modalIsOpened}
+          curId={curId}
         />
         <TodoList
           todoList={todolist}
           deleteTodoListItem={deleteTodo}
           updateTodoListItem={updateTodo}
           openModal={openModal}
+          openUpdateModal={openUpdateModal}
+          setCurId={setCurId}
         />
       </div>
     </>
