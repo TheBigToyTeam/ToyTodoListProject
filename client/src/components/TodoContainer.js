@@ -32,7 +32,7 @@ const TodoContainer = () => {
   }, []);
 
   const getTodoList = () => {
-    return fetch("http://localhost:8080/v2/todos/")
+    return fetch("http://localhost:13306/v2/todos/")
       .then((res) => res.json())
       .then((todoItem) => {
         setTodolist(todoItem);
@@ -48,7 +48,7 @@ const TodoContainer = () => {
         contents: contents,
       };
 
-      fetch("http://localhost:8080/v2/todos/", {
+      fetch("http://localhost:13306/v2/todos/", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -64,7 +64,7 @@ const TodoContainer = () => {
   };
 
   const deleteTodo = (id) => {
-    fetch(`http://localhost:8080/v2/todos/${id}`, { method: "DELETE" }) //
+    fetch(`http://localhost:13306/v2/todos/${id}`, { method: "DELETE" }) //
       .then((res) => {
         if (res.status === 202 || 204) {
           getTodoList();
@@ -80,7 +80,7 @@ const TodoContainer = () => {
       title: title,
       contents: contents,
     };
-    fetch(`http://localhost:8080/v2/todos/${curId}`, {
+    fetch(`http://localhost:13306/v2/todos/${curId}`, {
       method: "PATCH",
       body: JSON.stringify(updatedTodo),
     }).then((res) => {
