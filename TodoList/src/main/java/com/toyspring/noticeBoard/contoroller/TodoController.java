@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/v2/todos")
+@RequestMapping("/")
 @Slf4j
 @Validated
 @CrossOrigin(origins = "*")
